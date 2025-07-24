@@ -70,6 +70,14 @@ int main()
                         if(!sum(stack))
                             printf("err: stack is empty\n");
                         break;
+                    case 'A': /* No pop average */
+                        if (!no_pop_avg(stack))
+                            printf("err: stack is empty\n");
+                        break;
+                    case 'v': /* Standard deviation */
+                        if (!std(stack))
+                            printf("err: stack is empty\n");
+                        break;
                     case 'q': /* Quit */
                         return 0;
                         break;
@@ -141,6 +149,6 @@ int is_operator()
     char c;
 
     c = line[0];
-    return c == '+' || c == '-' || c == '*' || c == '/' || c == 'a' || c == 'c' || c == 'p' || c == 'd' || c == 's' ||c == 'q';
+    return c == '+' || c == '-' || c == '*' || c == '/' || c == 'a' || c == 'c' || c == 'p' || c == 'd' || c == 's' || c == 'A' || c == 'v' || c == 'q';
 }
 

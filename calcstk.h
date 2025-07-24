@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h> 
+#include <math.h>
 
 #ifndef CALCSTK_H
 #define CALCSTK_H
@@ -20,6 +21,7 @@ int pick(calcstk_t* stack);
 void print(calcstk_t* stack);
 int avg(calcstk_t* stack);
 int sum(calcstk_t* stack);
+int no_pop_avg(calcstk_t* stack);
 int std(calcstk_t* stack);
 
 #endif

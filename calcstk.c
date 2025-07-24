@@ -91,16 +91,37 @@ int sum(calcstk_t* stack)
     return 1;
 }
 
-int std(calcstk_t* stack)
+int no_pop_avg(calcstk_t* stack)
 {
-    if (stack->stk == 0)
+    if (stack->sp == 0)
         return 0;
 
     int i;
     double s;
 
     s = 0.0;
+    for (i = stack->sp - 1; i >= 0; --i)
+        s += stack->stk[i];
+   
+    push(stack, s/stack->sp);
+    return 1;
+}
+
+int std(calcstk_t* stack)
+{
+    if (!no_pop_avg(stack))
+        return 0;
+
+    int i;
+    double s;
     
+    s = 0.0;
+    for (i = 0; i < stack->sp - 1; ++i) /* The average is at stack->stk[stack->sp - 1]  */
+        s += pow(stack->stk[i] - stack->stk[stack->sp - 1], 2);
+
+    push(stack, sqrt(s/(stack->sp - 1))); /* Population std */
+    push(stack, sqrt(s/((stack->sp - 2) - 1))); /* Sample std */
+
     return 1;
 }
 
